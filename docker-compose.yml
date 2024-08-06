@@ -10,3 +10,16 @@ services:
    POSTGRES_USER: admin
    POSTGRES_PASSWORD: admin
    POSTGRES_DB: finances
+   
+ finances_app: 
+  depends_on: 
+   - postgres_database
+  ports:
+   - 8080:8080
+  build:
+   dockerfile: Dockerfile
+  environment:
+   DATASOURCE_URL: jdbc:postgresql://postgres_database:5432/finances
+   DATASOURCE_USERNAME: admin
+   DATASOURCE_PASSWORD: admin
+   
