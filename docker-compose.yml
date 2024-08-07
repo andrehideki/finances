@@ -16,6 +16,7 @@ services:
    - postgres_database
   ports:
    - 8082:8080
+   
   build:
    dockerfile: Dockerfile
   environment:
