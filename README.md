@@ -31,7 +31,6 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
     git clone https://github.com/seu-usuario/seu-repositorio.git
     cd seu-repositorio
     ```
-    ```
 
 2. Inicie o container Docker:
 
@@ -43,6 +42,6 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 
 ## Uso
 
-Após iniciar o container Docker, a aplicação estará disponível no seu navegador em `http://localhost:8080`. A partir daí, você pode acessar todas as funcionalidades do Finances App.
+Após iniciar o container Docker, a aplicação estará disponível no seu navegador em `http://localhost:8082`. A partir daí, você pode acessar todas as funcionalidades do Finances App.
 
 
