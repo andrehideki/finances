@@ -36,3 +36,8 @@ button[type=submit] {
 	border: 1px solid rgb(226 232 240);
 	border-radius: 3px;
 }
+
+.input_invalid {
+	border: 2px solid rgb(153 27 27);
+	background: rgb(254 226 226);
+}

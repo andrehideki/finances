@@ -12,6 +12,7 @@ export default {
 	      description: "",
 		  date: "",
 	      value: 0,
+		  errors: {}
 	    }
 	 },
 	 
@@ -29,6 +30,8 @@ export default {
 	  
 	methods: {
 		async saveEntry() {
+			this.errors = {};
+			
 			try {
 				if (!!this.id) {
 					await axios.put(`/entry/${this.id}`, {
@@ -86,9 +89,12 @@ export default {
 				}
 				
 			} catch (error) {
-				console.error('Error fetching transactions:', error);
+				(error.response.data.errors || []).forEach(error => {
+					this.errors[error.field] = error.defaultMessage;
+				});
+				console.error(error.response.data);
 			}
-		},
+		}
   	},
 	template: `
 		<div class="p-2">
@@ -101,7 +107,12 @@ export default {
 			<input type="hidden" id="id" v-model="id" />
 	  	    <div class="flex gap-1 flex-col">
 				<label>Name</label>
-				<input id="name" v-model="name" />
+				<input id="name" v-model="name" 
+					:class="{ 'input_invalid': errors['name'] }"
+				/>
+				<div v-if="errors['name']">
+					{{errors['name']}}
+				</div>
 			</div>
 	  	    <div class="flex gap-1 flex-col">
 				<label>Date</label>
@@ -120,7 +131,13 @@ export default {
 			</div>
 	  	    <div  class="flex gap-1 flex-col">
 				<label>Value</label>
-				<input id="value" v-model="value" />
+				<input id="value" v-model="value" 
+					type="number"
+					:class="{ 'input_invalid': errors['value'] }"
+				/>
+				<div v-if="errors['value']">
+					{{errors['value']}}
+				</div>
 			</div>
 	  	    <div  class="flex gap-1 flex-col">
 				<label>Description</label>
